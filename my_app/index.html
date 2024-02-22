@@ -35,9 +35,9 @@
                     </ul>
 
                 </div>
-                <form class="col-6">
+                <form class="col-6" @submit.prevent="addTask">
                     <div class="input-group mb-3 rounded">
-                        <input type="text" class="form-control" placeholder="Add task">
+                        <input type="text" class="form-control" placeholder="Add task" v-model.trim="newTask">
                         <button class="btn btn-outline-secondary bg-primary" type="submit" id="button-add"><span
                                 class="text-white">Add</span></button>
                     </div>
