@@ -19,6 +19,11 @@
     <!-- Css -->
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- fontawesome -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css'
+        integrity='sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=='
+        crossorigin='anonymous' />
+
     <title>php-todo-list</title>
 </head>
 
@@ -31,11 +36,12 @@
             <div class="container d-flex flex-column align-items-center">
                 <div class="list-box bg-white mb-5 col-6 rounded-top">
                     <ul>
-                        <li v-for="(task, id) in tasks" :key="id" class="p-3 border-bottom">{{ task.text }}</li>
+                        <li v-for="(task, id) in tasks" :key="id" class="p-3 border-bottom"><span :class="task.done === true ? 
+                                'text-decoration-line-through' : '' "> {{task.text}}</span></li>
                     </ul>
 
                 </div>
-                <form class="col-6" @submit.prevent="addTask">
+                <form class=" col-6" @submit.prevent="addTask">
                     <div class="input-group mb-3 rounded">
                         <input type="text" class="form-control" placeholder="Add task" v-model.trim="newTask">
                         <button class="btn btn-outline-secondary bg-primary" type="submit" id="button-add"><span

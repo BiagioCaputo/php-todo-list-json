@@ -27,8 +27,7 @@ if($newTask) {
 $tasks = json_encode($tasks);
 
 //sovrascrivo il vecchio array tasks con quello aggiornato
-
-file_put_contents($source_path, $tasks);
+//file_put_contents($source_path, $tasks);
 
 //stampo i task riconvertiti in jason
 echo $tasks;

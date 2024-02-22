@@ -12,7 +12,7 @@ const app = createApp({
         addTask() {
             const data = {
                 task: {
-                    id: this.tasks.length + 1,
+                    id: new Date().toISOString(),
                     text: this.newTask,
                     done: false
                 }
