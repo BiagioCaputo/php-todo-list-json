@@ -11,11 +11,7 @@ const app = createApp({
     methods: {
         addTask() {
             const data = {
-                task: {
-                    id: new Date().toISOString(),
-                    text: this.newTask,
-                    done: false
-                }
+                'task': this.newTask
             };
             const config = { headers: { 'Content-Type': 'multipart/form-data' } }
 
@@ -23,7 +19,37 @@ const app = createApp({
                 this.tasks = res.data;
                 this.newTask = '';
             })
-        }
+        },
+
+        toggleTask(id) {
+            const data = { id };
+            const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+
+            axios.post(`${endpoint}toggle/`, data, config).then(res => {
+                this.tasks = res.data;
+            })
+        },
+
+        deleteTask(id) {
+            const data = { id };
+            const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+
+            axios.post(`${endpoint}delete/`, data, config).then(res => {
+                this.tasks = res.data;
+            })
+        },
+
+        /* 
+        fetchApi(endpoint, data) {
+            const data = { id };
+            const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+
+            axios.post('${endpoint}toggle/', data, config).then(res => {
+                this.tasks = res.data;
+            })
+        },
+
+         */
     },
 
     created() {

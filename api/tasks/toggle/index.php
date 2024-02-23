@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 
 //path per arrivare al file json
-$source_path = __DIR__ . '/../../database/tasks.json';
+$source_path = __DIR__ . '/../../../database/tasks.json';
 
 //prendo i contenuti del file json
 $data = file_get_contents($source_path);
@@ -12,30 +12,26 @@ $data = file_get_contents($source_path);
 $tasks = $data;
 
 //controllo se ho un nuovo task
-$task_text= $_POST['task'] ?? '';
-
-
+$task_id= $_POST['id'] ?? null;
 
 
 //se ce l'ho
-if($task_text) {
+if($task_id) {
 
     //converto in array php
     $tasks = json_decode($tasks, true);
-    
-    $new_task = [
-        'done' => false,
-        'text' => $task_text,
-        'id' => uniqid()
-    ];
-    //aggiungo il task
-    $tasks[] = $new_task;
+
+    $tasks = array_map(function($task){
+        if($task['id'] == $_POST['id'] ) $task['done'] = !$task['done'];
+        return $task;
+    }, $tasks);
 
     //riconverto in json
     $tasks = json_encode($tasks);
 
 }
 
+    //stampo i task riconvertiti in jason
+    echo $tasks;
 
-echo $tasks;
 

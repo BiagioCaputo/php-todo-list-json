@@ -36,8 +36,14 @@
             <div class="container d-flex flex-column align-items-center">
                 <div class="list-box bg-white mb-5 col-6 rounded-top">
                     <ul>
-                        <li v-for="(task, id) in tasks" :key="id" class="p-3 border-bottom"><span :class="task.done === true ? 
-                                'text-decoration-line-through' : '' "> {{task.text}}</span></li>
+                        <li v-for="(task, id) in tasks" :key="task.id"
+                            class="p-3 border-bottom d-flex justify-content-between"><span @click="toggleTask(task.id)"
+                                :class="task.done === true ? 
+                                'text-decoration-line-through' : '' "> {{task.text}}</span>
+                            <button type="button" class="trash-container" @click="deleteTask(task.id)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </li>
                     </ul>
 
                 </div>
